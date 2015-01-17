@@ -1,0 +1,30 @@
+#!/bin/bash -login
+#PBS -l walltime=00:03:00
+#PBS -l nodes=1:ppn=20
+#PBS -l mem=1gb
+#PBS -N test_teotonio
+
+# Activate the virtual enviroment
+source ~/venv/base/bin/activate
+
+# Load an recent version of R and indicate the 
+# path where the R packages are installed.
+module load R/3.1.0
+export R_LIBS=${HOME}/local/rpacks
+
+# A requirement for the ipython notebook
+module load PyQt/4.9.4  
+
+# This will setup the parallel environment with
+# 20 workers. This should match the actual number
+# of processors available
+ipcluster start -n 20&
+# Wait until the workers are all ready
+sleep 20
+
+# Run the notebook and save the results
+# as a html file 
+runipy Nitrosopumilus-example.ipynb --html report.html
+
+# Stop the cluster
+ipcluster stop
