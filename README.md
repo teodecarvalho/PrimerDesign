@@ -25,7 +25,7 @@ pip install biopython
 pip install runipy
 pip install selenium
 
-##### To install rpy2 it is necessary to load R 3.3.1
+##### To install rpy2 it is necessary to load R 3.1.0
 module load R/3.1.0
 pip install rpy2
 
@@ -41,9 +41,13 @@ cd ..
 module load R/3.1.0
 source ~/venv/base/bin/activate
 
-##### Instal the ggplot2 and reshape2 R packages
+##### Instal the R packages (after loading the appropriate version of R
+##### R Code (type within R)
+install.packages("ggplot2")
+install.packages("plyr")
+install.packages("reshape2")
 
-##### To 
+#### To run the notebook interactively:
 ##### Run the ipython notebook without a browser:
 ipython notebook --no-browser &
 
@@ -56,3 +60,11 @@ ipython notebook --no-browser &
 ##### If you don’t want to have to do this workaround everytime, you can create an IPython profile and set the browser appropriately.
 ##### Don’t use the firefox originally available at HPCC because it crashes very easily.
 ##### Any questions, feel free to contact me at teo.decarvalho@gmail.com
+
+#### To run the notebook using qsub 
+##### Install runipy
+pip install runipy
+
+##### See the file job_example.qsub for an example of running the Nitrosopumilus example.
+##### You will have to comment out part of the notebook or use "if" statements to select
+##### the section of the notebook that you want to run.
